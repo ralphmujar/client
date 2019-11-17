@@ -7,7 +7,8 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            your_url: ''
+            your_url: '',
+            short_url: '',
         }
     
     }
@@ -27,7 +28,7 @@ class App extends Component {
             body: JSON.stringify({'url' : data.your_url})
         })
         .then((res) => res.json() )
-        .then((res) => console.log(res) )
+        .then((res) => { this.setState({ short_url: res }) })
         .catch((err) => console.warn(err) );
     }
 
@@ -52,7 +53,7 @@ class App extends Component {
 
                 <div> <input type='submit' value='Shorten'/> </div>
             </form>
-            <div> {this.state.your_url} </div>
+            <div> {this.state.short_url} </div>
         </div>
     );
   }
